@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip List</title>
+    <link rel="stylesheet" href="{% static 'rideshare/css/styles.css' %}">
+</head>
+<body>
+    <h1>List of Trips</h1>
+    <p>Total trips: {{ trips|length }}</p>
+
+    <a href="{% url 'create_trip' %}">Create New Trip</a>
+
+    <table>
+        <tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Route</th>
+            <th>Actions</th>
+        </tr>
+        {% for trip in trips %}
+            <tr>
+                <td>{{ trip.start_time }}</td>
+                <td>{{ trip.end_time }}</td>
+                <td>{{ trip.route }}</td>
+                <td>
+                    <a href="{% url 'update_trip' trip.pk %}">Edit</a>
+                    <a href="{% url 'delete_trip' trip.pk %}">Delete</a>
+
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No trips available.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+
+    <br>
+    <a href="{% url 'index' %}">Back to Home</a>
+</body>
+</html>

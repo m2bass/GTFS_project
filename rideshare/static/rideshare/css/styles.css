@@ -1,0 +1,18 @@
+.error {
+    color: red;
+}
+
+.error li {
+    color: red;  /* Make individual error messages red */
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+}

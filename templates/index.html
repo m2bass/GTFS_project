@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rideshare App{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to RideShare</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'trip_list' %}">View Trips</a></li>
+                <li><a href="{% url 'create_trip' %}">Create a New Trip</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        <h2>Welcome to the RideShare App</h2>
+        <p>Here you can manage your trips and stops easily.</p>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 RideShare</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}  <!-- This is the required line -->
+    <link rel="stylesheet" type="text/css" href="{% static 'rideshare/css/styles.css' %}">
+    <title>Create/Update Trip</title>
+</head>
+<body>
+    <h1>{% if trip_form.instance.pk %}Update{% else %}Create{% endif %} Trip</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Trip Details Section -->
+        <h2>Trip Details</h2>
+        <fieldset>
+            <legend>Trip Information</legend>
+            {{ trip_form.as_p }}
+            {% if trip_form.errors %}
+                <ul  class="error">
+                    {% for error in trip_form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </fieldset>
+
+        <!-- Stop Details Section -->
+        <h2>Stop Details</h2>
+        <fieldset>
+            <legend>Stop Information</legend>
+            {{ stop_form.as_p }}
+            {% if stop_form.errors %}
+                <ul class="error">
+                    {% for error in stop_form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </fieldset>
+
+        <!-- Stop Time Details Section -->
+        <h2>Stop Time Details</h2>
+        <fieldset>
+            <legend>Stop Time Information</legend>
+            {{ stop_time_form.as_p }}
+            {% if stop_time_form.errors %}
+                <ul class="error">
+                    {% for error in stop_time_form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </fieldset>
+
+        <!-- Submit Button -->
+        <button type="submit">Save Trip</button>
+    </form>
+
+    <!-- Link to Trip List -->
+    <a href="{% url 'trip_list' %}">Back to Trip List</a>
+</body>
+</html>
